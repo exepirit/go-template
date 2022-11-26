@@ -2,3 +2,4 @@ lint_report.json
 .idea/
 .vscode/
 .vim/
+dist/

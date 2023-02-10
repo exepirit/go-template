@@ -35,35 +35,35 @@ func SentryDefaultMiddleware() gin.HandlerFunc {
 // matchTransactionStatus mathes HTTP status code to Sentry transaction status.
 //
 // More infofmation here: https://develop.sentry.dev/sdk/event-payloads/span/
-func matchTransactionStatus(statusCode int) string {
+func matchTransactionStatus(statusCode int) sentry.SpanStatus {
 	if statusCode >= 200 && statusCode < 300 {
-		return "ok"
+		return sentry.SpanStatusOK
 	}
 
 	switch statusCode {
 	case 400:
-		return "failed_precondition"
+		return sentry.SpanStatusFailedPrecondition
 	case 401:
-		return "unauthenticated"
+		return sentry.SpanStatusUnauthenticated
 	case 403:
-		return "permission_denied"
+		return sentry.SpanStatusPermissionDenied
 	case 404:
-		return "not_found"
+		return sentry.SpanStatusNotFound
 	case 409:
-		return "already_exists"
+		return sentry.SpanStatusAlreadyExists
 	case 429:
-		return "resource_exhausted"
+		return sentry.SpanStatusResourceExhausted
 	case 499:
-		return "cancelled"
+		return sentry.SpanStatusCanceled
 	case 500:
-		return "internal_error"
+		return sentry.SpanStatusInternalError
 	case 501:
-		return "unimplemented"
+		return sentry.SpanStatusUnimplemented
 	case 503:
-		return "unavailable"
+		return sentry.SpanStatusUnavailable
 	case 504:
-		return "deadline_exceeded"
+		return sentry.SpanStatusDeadlineExceeded
 	default:
-		return "unknown"
+		return sentry.SpanStatusUnknown
 	}
 }

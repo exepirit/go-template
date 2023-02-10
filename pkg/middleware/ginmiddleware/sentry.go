@@ -66,13 +66,4 @@ func matchTransactionStatus(statusCode int) string {
 	default:
 		return "unknown"
 	}
-
-	switch {
-	case statusCode >= 200 && statusCode < 300:
-		return "ok"
-	case statusCode ==
-	case statusCode == 499:
-		return "cancelled"
-	case
-	}
 }
